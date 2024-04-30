@@ -1,0 +1,20 @@
+
+
+
+TARGET_BAD_FLAG		: Did person default on the Home Equity Loan? 1=BAD LOAN, 0=GOOD LOAN
+TARGET_LOSS_AMT		: If the person defaulted, what was the loss?
+
+LOAN			: What was the Home Equity Loan Amount?	
+MORTDUE			: How much money did the person owe on their mortgage at time of the loan?
+VALUE			: What was the value of the house at the time of the loan?
+REASON			: What was the reason for the loan?
+JOB			: What is the person's job?
+YOJ			: How many years have they been at their job?
+DEROG			: How many derogatory loans did the person have at time of loan originarion? Derogatory = Default on previous loan
+DELINQ			: How many time has the person been late on other bills in the last 3 years?
+CLAGE			: Credit Line Age in months. How many months has the person had a credit card or some other credit?
+NINQ			: Number of inquiries. How many times has the person looked to borrow money in the past year?
+CLNO			: How many lines of credit does the person have? For example, how many credit cards do they have?
+DEBTINC			: What is the person's debt to income ratio? Do they have a lot of bills compared to their income?
+
+
