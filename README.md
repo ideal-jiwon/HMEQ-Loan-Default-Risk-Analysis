@@ -1,36 +1,82 @@
-HMEQ Loan Default Risk Analysis
+# Home Equity Loan Default Analysis
 
-Overview
+## 📊 Dataset Overview
 
-This report conducts an in-depth analysis of the Home Equity Loan Default dataset (HMEQ) to predict the likelihood of default using linear and logistic regression models. The study employs various statistical methods and machine learning algorithms to explore factors influencing loan default risks.
+The dataset consists of **5,960 observations** with **28 variables** covering:
 
-Dataset
+- **Loan characteristics**
+- **Borrower's financial history**
+- **Loan outcomes** (default or no default)
 
-The dataset contains 5,960 observations with 28 variables related to loan characteristics, borrower's financial history, and the outcome of the loan (default or no default). The dataset was cleaned and preprocessed before modeling.
+The dataset was thoroughly **cleaned and preprocessed** before proceeding to the modeling phase.
 
-Tools and Libraries Used
+---
 
-R Language: Main programming language used for analysis.
-Libraries: rpart, rpart.plot, ROCR, MASS, randomForest, gbm.
-Methods and Models
+## 🛠️ Tools and Libraries Used
 
-Data Preprocessing: Data cleaning, handling missing values, and feature engineering.
-Exploratory Data Analysis: Descriptive statistics and visualization to understand the distribution and relationships among variables.
-Model Building:
-Logistic Regression: To estimate the probability of default.
-Decision Trees and Random Forest: For classification and understanding feature importance.
-Gradient Boosting: To improve prediction accuracy.
-Model Evaluation: Using AUC-ROC curves, accuracy, precision, recall, and F1-score to evaluate model performance.
-Results and Discussion: Interpretation of model outputs, feature importance, and model comparisons.
-Key Findings
+The analysis was conducted using the **R programming language**, leveraging the following libraries:
 
-Models indicate various borrower characteristics and loan features that significantly impact the likelihood of default.
-The Random Forest model showed the highest predictive accuracy among the tested models.
-Conclusion
+- **Data Processing & Visualization:**  
+  - `rpart`, `rpart.plot`, `MASS`
+- **Modeling:**  
+  - `randomForest`, `gbm`
+- **Evaluation:**  
+  - `ROCR`
 
-The analysis provides insights into factors that contribute to home equity loan defaults, which can assist financial institutions in improving their risk assessment frameworks.
+---
 
-Files Structure
+## 🚀 Methodology
 
-HMEQ_Scrubbed.csv: The cleaned dataset used for the analysis.
-HMEQ_Analysis.R: R scripts containing all the analyses, including data cleaning, model building, and evaluation.
+The analysis followed a structured pipeline, including the following key steps:
+
+### 1. **Data Preprocessing**
+- Cleaning and handling missing values
+- Feature engineering to enhance model performance
+
+### 2. **Exploratory Data Analysis (EDA)**
+- Descriptive statistics to understand variable distributions
+- Visualizations to identify trends and relationships
+
+### 3. **Model Building**
+- **Logistic Regression:**  
+  - Estimation of the probability of loan default.
+- **Decision Trees & Random Forest:**  
+  - Classification models and feature importance analysis.
+- **Gradient Boosting:**  
+  - Enhanced accuracy through ensemble learning.
+
+### 4. **Model Evaluation**
+- Performance metrics used for evaluation:
+  - **AUC-ROC curves**
+  - **Accuracy, Precision, Recall, and F1-score**
+
+### 5. **Results and Discussion**
+- Interpretation of key variables affecting loan default
+- Model comparison and performance analysis
+
+---
+
+## 📈 Key Findings
+
+- Several borrower and loan characteristics significantly influence the likelihood of default.
+- The **Random Forest model** achieved the highest predictive accuracy among all tested models.
+
+---
+
+## 🏁 Conclusion
+
+This analysis provides valuable insights into the factors influencing home equity loan defaults.  
+The findings can aid financial institutions in enhancing their **risk assessment frameworks**, enabling better loan approval decisions.
+
+---
+
+## 📂 File Structure
+
+The project consists of the following files:
+
+- **`HMEQ_Scrubbed.csv`** – The cleaned dataset used for analysis.
+- **`HMEQ_Analysis.R`** – R script containing:
+  - Data preprocessing
+  - Model building
+  - Model evaluation
+
