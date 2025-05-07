@@ -1,82 +1,98 @@
-# Home Equity Loan Default Analysis
+# HMEQ Loan Default & Loss Amount Prediction (Tree + Regression)
 
-## 📊 Dataset Overview
-
-The dataset consists of **5,960 observations** with **28 variables** covering:
-
-- **Loan characteristics**
-- **Borrower's financial history**
-- **Loan outcomes** (default or no default)
-
-The dataset was thoroughly **cleaned and preprocessed** before proceeding to the modeling phase.
+This project uses decision trees, ensemble methods, and regression to analyze customer loan default probability and potential financial loss. Dimensionality reduction techniques (PCA & t-SNE) are also applied to observe changes in model performance.
 
 ---
 
-## 🛠️ Tools and Libraries Used
+## Key Results Summary
 
-The analysis was conducted using the **R programming language**, leveraging the following libraries:
-
-- **Data Processing & Visualization:**  
-  - `rpart`, `rpart.plot`, `MASS`
-- **Modeling:**  
-  - `randomForest`, `gbm`
-- **Evaluation:**  
-  - `ROCR`
+| Model Type           | Dataset            | GINI AUC | ENTROPY AUC | REGRESSION AUC |
+|----------------------|--------------------|----------|-------------|----------------|
+| Tree Models          | Original Data      | 0.8433   | 0.8294      | 0.9105         |
+| Tree Models          | PCA/t-SNE Data     | 0.8289   | 0.8383      | 0.9124         |
 
 ---
 
-## 🚀 Methodology
+## Modeling Workflow
 
-The analysis followed a structured pipeline, including the following key steps:
+### 1. Tree & Regression on Original Data
 
-### 1. **Data Preprocessing**
-- Cleaning and handling missing values
-- Feature engineering to enhance model performance
+- Trained using GINI, ENTROPY, and Regression split criteria.
+- Evaluated using AUC on ROC Curve.
 
-### 2. **Exploratory Data Analysis (EDA)**
-- Descriptive statistics to understand variable distributions
-- Visualizations to identify trends and relationships
+ROC Curve:
+![ROC AUC - Original](./Graphs/ROC/ROC-AUC.png)
 
-### 3. **Model Building**
-- **Logistic Regression:**  
-  - Estimation of the probability of loan default.
-- **Decision Trees & Random Forest:**  
-  - Classification models and feature importance analysis.
-- **Gradient Boosting:**  
-  - Enhanced accuracy through ensemble learning.
-
-### 4. **Model Evaluation**
-- Performance metrics used for evaluation:
-  - **AUC-ROC curves**
-  - **Accuracy, Precision, Recall, and F1-score**
-
-### 5. **Results and Discussion**
-- Interpretation of key variables affecting loan default
-- Model comparison and performance analysis
+**Conclusion**:
+- Regression split yielded the **highest AUC (0.91)**.
+- Tree-based splits also performed well.
 
 ---
 
-## 📈 Key Findings
+### 2. Tree & Regression on PCA/t-SNE Transformed Data
 
-- Several borrower and loan characteristics significantly influence the likelihood of default.
-- The **Random Forest model** achieved the highest predictive accuracy among all tested models.
+- Applied PCA and t-SNE to reduce dimensionality.
+- Re-trained the same models on the transformed dataset.
+
+📈 ROC Curve:
+![ROC AUC - PCA:tSNE](./Graphs/ROC/Tree and Regression Analysis on the PCA:tSNE Dat.png)
+
+**Key Observations**:
+- GINI AUC **decreased** slightly → PCA/tSNE obscured some tree-based separability.
+- ENTROPY AUC **increased** → Transformation helped clarify some entropy-based splits.
+- REGRESSION AUC remained stable → linear structure preserved.
 
 ---
 
-## 🏁 Conclusion
+### 3. Visual Tree Models
 
-This analysis provides valuable insights into the factors influencing home equity loan defaults.  
-The findings can aid financial institutions in enhancing their **risk assessment frameworks**, enabling better loan approval decisions.
+- Tree split using loan amount, debt-to-income ratio, delinquency history, and more.
+
+ Tree Example 1:
+![GINI Tree](./Graphs/04probability*se/anovaregressiontree.png)
+
+Tree Example 2:
+![Poisson Regression Tree](./Graphs/04probability*se/poissonregressiontree.png)
+
+ Gradient Boosting Tree:
+![Gradient Boosting](./Graphs/Step01/GradientBoosting.png)
+
+ Random Forest Tree:
+![Random Forest](./Graphs/Step01/RandomForest.png)
 
 ---
 
-## 📂 File Structure
+### 4. RMSE Comparison – Probability vs. Severity Models
 
-The project consists of the following files:
+Calculated RMSE for default probability prediction (`RMSE1p`) and loss amount estimation (`RMSE2`).
 
-- **`HMEQ_Scrubbed.csv`** – The cleaned dataset used for analysis.
-- **`HMEQ_Analysis.R`** – R script containing:
-  - Data preprocessing
-  - Model building
-  - Model evaluation
+RMSE Comparison:
+![RMSE](./Graphs/04probability*se/RMSEforprobabiltyvsseveritymodel.png)
+
+| Model              | RMSE         |
+|-------------------|--------------|
+| Probability Model | 3001.205     |
+| Severity Model    | 2015.801     |
+
+---
+
+### 5. Variable Importance
+
+Feature importance by model:
+
+- Top predictors: `M_VALUE`, `IMP_VALUE`, `IMP_NINQ`, `IMP_DEBTINC`
+
+---
+
+
+## Tools & Libraries
+
+- Language: **R**
+- Packages: `rpart`, `randomForest`, `gbm`, `ROCR`, `MASS`, `tsne`, `caret`
+- Methods: Decision Tree, Random Forest, Gradient Boosting, Logistic Regression, PCA, t-SNE
+
+---
+
+
+
 
