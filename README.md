@@ -6,10 +6,28 @@ This project uses decision trees, ensemble methods, and regression to analyze cu
 
 ## Key Results Summary
 
-| Model Type           | Dataset            | GINI AUC | ENTROPY AUC | REGRESSION AUC |
-|----------------------|--------------------|----------|-------------|----------------|
-| Tree Models          | Original Data      | 0.8433   | 0.8294      | 0.9105         |
-| Tree Models          | PCA/t-SNE Data     | 0.8289   | 0.8383      | 0.9124         |
+To evaluate the impact of dimensionality reduction on model performance, PCA and t-SNE were applied before retraining tree-based and regression models.
+
+| Model Type | AUC (Original Data) | AUC (PCA/t-SNE Data) |
+|------------|---------------------|----------------------|
+| GINI       | 0.8433              | 0.8289               |
+| ENTROPY    | 0.8294              | 0.8383               |
+| REGRESSION | 0.9105              | 0.9124               |
+
+### Key Observations
+
+- 🔻 **GINI**: Performance slightly decreased, suggesting PCA/t-SNE may have obscured decision boundaries critical to this criterion.  
+- 🔺 **ENTROPY**: Performance improved, possibly due to enhanced separability in high-entropy regions.  
+- ➖ **REGRESSION**: Remained stable, indicating that **linear patterns were preserved** even after dimensionality reduction.
+
+### Conclusion
+
+While PCA/t-SNE can remove noise from irrelevant variables, its effect varies by model type:  
+- Tree-based models (GINI, ENTROPY) showed **different sensitivities** to the transformed input space.  
+- Regression performance was **robust**, reinforcing that principal variance directions remained aligned with the original data.  
+- Overall, **dimensionality reduction helped interpretability** but **did not significantly improve predictive power** in this context.
+
+
 
 ---
 
@@ -81,32 +99,7 @@ RMSE Comparison:
 Feature importance by model:
 
 - Top predictors: `M_VALUE`, `IMP_VALUE`, `IMP_NINQ`, `IMP_DEBTINC`
-
----
-## 6 Overview of PCA/t-SNE Transformation Analysis
-
-To evaluate the impact of dimensionality reduction on model performance, PCA and t-SNE were applied before retraining tree-based and regression models.
-
-| Model Type | AUC (Original Data) | AUC (PCA/t-SNE Data) |
-|------------|---------------------|----------------------|
-| GINI       | 0.8433              | 0.8289               |
-| ENTROPY    | 0.8294              | 0.8383               |
-| REGRESSION | 0.9105              | 0.9124               |
-
-### Key Observations
-
-- 🔻 **GINI**: Performance slightly decreased, suggesting PCA/t-SNE may have obscured decision boundaries critical to this criterion.  
-- 🔺 **ENTROPY**: Performance improved, possibly due to enhanced separability in high-entropy regions.  
-- ➖ **REGRESSION**: Remained stable, indicating that **linear patterns were preserved** even after dimensionality reduction.
-
-### Conclusion
-
-While PCA/t-SNE can remove noise from irrelevant variables, its effect varies by model type:  
-- Tree-based models (GINI, ENTROPY) showed **different sensitivities** to the transformed input space.  
-- Regression performance was **robust**, reinforcing that principal variance directions remained aligned with the original data.  
-- Overall, **dimensionality reduction helped interpretability** but **did not significantly improve predictive power** in this context.
-
-
+- 
 ---
 ## Tools & Libraries
 
